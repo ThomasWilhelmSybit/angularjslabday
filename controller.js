@@ -48,9 +48,9 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','TagService', functi
 }]);
 
 
-noteAppControllers.controller('TodoDetailCtrl', ['$scope',
-	function($scope) {
-	$scope.test = "Dies ist der Test";
+noteAppControllers.controller('TodoDetailCtrl', ['$scope', '$routeParams',
+	function($scope, $routeParams) {
+	$scope.test = $routeParams;
 /* 
  $scope.phones = Phone.query();
     $scope.orderProp = 'age';
