@@ -1,18 +1,17 @@
 var noteApp = angular.module('noteApp',[]);
 
-function TodoCtrl ($scope) {
+noteApp.controller('TodoCtrl', function($scope, $http) {
+ 
+    $http.get('data/notes.json').success(function(data) {
+       $scope.todos = data;
+    });
 	
-	$scope.todos = [
-	{text:'learn angular', name:'angular', containingFolder:'mySubFolder', done:true},
-	{text:'build an angular app', name:'app', containingFolder:'mySubFolder', done:false},
-	{text:'foo!', name: 'foo', containingFolder:'myTestFolder', done:false}
-	];
-
 	$scope.addTodo = function(){
 		$scope.todos.push({text:$scope.todoText, name:$scope.todoName, containingFolder:askForFolderName(), done:false});
 		$scope.todoText='';
 	};
 
+	/*
 	$scope.remaining = function() {
 		var count = 0;
 		angular.forEach($scope.todos, function(todo) {
@@ -20,6 +19,7 @@ function TodoCtrl ($scope) {
 		});
 		return count;
 	};
+	*/
 
 	$scope.archive = function() {
 		var oldTodos = $scope.todos;
@@ -32,20 +32,24 @@ function TodoCtrl ($scope) {
 	var askForFolderName = function(){
 		prompt('What do you want your Folder to be named?');
 	}
-};
+  
+});
 
 
-function FolderCtrl($scope) {
+noteApp.controller('TagCtrl', function($scope) {
 
-	$scope.subFolders = [
-	{name:'mySubFolder', containingFolder:'myTopFolder',contains:[]},
-	{name:'myTestFolder',containingFolder:'notExistingTopFolder',contains:[]}
-	];
+/*
+    $http.get('data/tags.json').success(function(data) {
+       $scope.tags = data;
+	   
+    });
+*/	
+	$scope.tags = [{id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] }];
 
-	$scope.topFolders = [
-	{name:'myTopFolder',contains:[]}
-	];
-
+	$scope.filterbytag = function(tagid){
+	    $scope.filterbytagid = tagid;
+	};
+	
 	$scope.addSubFolder = function(){
 		$scope.subFolders.push({name:$scope.subFolderName, containingFolder:$scope.topFolderName});
 	};
@@ -54,5 +58,5 @@ function FolderCtrl($scope) {
 		$scope.topFolders.push({name:$scope.topFolderName});
 	};
 	
-};
+});
 	

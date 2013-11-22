@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app lang="en">
+<html ng-app="noteApp" lang="en">
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 		<script src="bootstrap/js/bootstrap.js"></script>
@@ -60,22 +60,18 @@
 	</div>	
 	<div class='container-fluid'>
 		<div class='row-fluid'>
-			<div class ='span3' ng-controller="FolderCtrl">
+			<div class ='span3' ng-controller="TagCtrl">
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
-						<li class="nav-header">Sidebar</li>
+						<li class="nav-header">Sidebar {{filterbytagid}}</li>
 						<div>
 							<ul>
-								<li ng-repeat="topFolder in topFolders">
-								{{topFolder.name}} 
+								<li ng-repeat="roottag in tags">
+								
+                                    <a href="" ng-click="filterbytag(roottag.id)">{{roottag.title}}</a>								
 									<ul>
-										<li ng-repeat="subFolder in subFolders">
-										{{subFolder.name}}
-											<ul ng-controller="TodoCtrl">
-												<li ng-repeat="todo in todos">
-												{{todo.name}}
-												</li>
-											</ul>	
+										<li ng-repeat="tag in roottag.children">									
+										   <a href="" ng-click="filterbytag(tag.id)">{{tag.title}}</a>	
 										</li>
 									</ul>	
 								</li>
