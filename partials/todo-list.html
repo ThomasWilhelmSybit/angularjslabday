@@ -1,0 +1,66 @@
+	
+<div class='navbar navbar-inverse navbar-fixed-top'>
+	<div class='navbar-inner'>
+		<div class='container-fluid'>
+			<button class="btn btn-navbar collapsed" data-target=".nav-collapse" data-toggle="collapse" type="button">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class='brand' href='#'>Project Name</a>
+			<div class="nav-collapse collapse">
+				<p class="navbar-text pull-right">
+				Logged in as
+				<a class="navbar-link" href="#">Username</a>
+				</p>
+				<ul class="nav">
+					<li class="active">	
+					<a href="#">Home</a>	
+					</li>
+					<li>
+					<a href="#about">About</a>
+					</li>
+					<li>
+					<a href="#contact">Contact</a>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>	
+<div class='container-fluid'>
+	<div class='row-fluid'>
+		<div class ='span3' ng-controller="TagCtrl">
+			<div class="well sidebar-nav">
+				<ul class="nav nav-list">
+					<li class="nav-header">Sidebar {{filterbytagid}}</li>
+					<div>
+						<ul>
+							<li ng-repeat="roottag in tags">
+							
+								<a href="" ng-click="filterbytag(roottag.id)">{{roottag.title}}</a>								
+								<ul>
+									<li ng-repeat="tag in roottag.children">									
+									   <a href="" ng-click="filterbytag(tag.id)">{{tag.title}}</a>	
+									</li>
+								</ul>	
+							</li>
+						</ul>
+					</div>
+				</ul>
+			</div>
+		</div>
+		<div class ='span9' ng-controller="TodoCtrl">
+			<div class='hero-unit' ng-repeat="todo in todos">
+				<h2>{{todo.title}}</h2>
+				<p> {{todo.content}}</p>							
+				<p class='text-left'>tags: 
+				   <span ng-repeat="tagid in todo.tags">{{getTagFromId(tagid)}}</span>
+				</p>	
+			</div>
+		</div>
+		<hr>
+		<footer>
+			<p>by Joern Griepenburg</p>
+		</footer>
+	</div>
+</div>	
