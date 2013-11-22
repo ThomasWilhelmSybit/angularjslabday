@@ -1,0 +1,38 @@
+{
+	[
+		"id": 1,
+        "title": "Action pending", 
+        "children": [
+			"id": 2,
+			"title": "Action pending private", 
+			"children": [
+		
+			]
+		],
+		"id": 3,
+		"title": "Archiv", 
+        "children": [
+		
+		],
+		"id": 4,
+		"title": "Completed", 
+        "children": [
+		
+		],
+		"id": 5,
+		"title": "Knowledge", 
+        "children": [
+		
+		],
+		"id": 6,
+		"title": "Work", 
+        "children": [
+		
+		],
+		"id": 7,
+		"title": "Deleted", 
+        "children": [
+		
+		]
+    ]
+}
