@@ -48,6 +48,16 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','TagService', functi
 }]);
 
 
+noteAppControllers.controller('TodoDetailCtrl', ['$scope', 'Todo',
+	function($scope, Todo) {
+	$scope.test = "Dies ist der Test";
+/* 
+ $scope.phones = Phone.query();
+    $scope.orderProp = 'age';
+	*/
+  }]);
+
+
 noteAppControllers.controller('TagCtrl', function($scope, $http) {
 
 
