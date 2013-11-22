@@ -1,9 +1,7 @@
 var noteAppControllers = angular.module('noteAppControllers',[]);
 
 noteAppControllers.controller('TodoCtrl', ['$scope','$http','TagService', function($scope, $http, TagService) {
- 
-    
- 
+
     $http.get('data/notes.json').success(function(data) {
        $scope.todos = data;
     });
@@ -24,13 +22,9 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','TagService', functi
 	*/
 	
 	$scope.getTagFromId = function(id) {	
-	    //TagService.addtags($scope); 
-		
-		//$scope.getTagById(id);
-		//alert(tag);
-		//console.log($scope.tags);
-		
-		//return $scope.tags[0].title;
+	    
+		//console.log(TagService.flat());
+		return TagService.flat()[id];
 	}
 
 	$scope.archive = function() {
