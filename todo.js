@@ -36,15 +36,15 @@ noteApp.controller('TodoCtrl', function($scope, $http) {
 });
 
 
-noteApp.controller('TagCtrl', function($scope) {
+noteApp.controller('TagCtrl', function($scope, $http) {
 
-/*
+
     $http.get('data/tags.json').success(function(data) {
        $scope.tags = data;
-	   
     });
-*/	
-	$scope.tags = [{id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] }];
+	
+	
+	//$scope.tags = [{id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] }];
 
 	$scope.filterbytag = function(tagid){
 	    $scope.filterbytagid = tagid;
