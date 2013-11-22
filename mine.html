@@ -88,7 +88,7 @@
 					<h2>{{todo.title}}</h2>
 					<p> {{todo.content}}</p>							
 					<p class='text-left'>tags: 
-					   <span ng-repeat="tagid in todo.tags">{{getTagFromId(tagid)}}</span>
+					   <span ng-repeat="tagid in todo.tags">{{getTagFromId(tagid).title}}</span>
 					</p>	
 				</div>
 			</div>

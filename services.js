@@ -3,13 +3,53 @@ var noteAppServices = angular.module('noteAppServices', []);
 noteAppServices.factory('TagService', ['$http',
   function($http){
   
-    //return {tags:[{id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] }]};
+	var tags = {tags:[]};
 	
-	return {addtags: function(scope){
+	$http.get('data/tags.json').success(function(data) {
+       tags.array = data;
+    });
 	
-		$http.get('data/tags.json').success(function(data) {
-			scope.tags = data;
-		})} };
+	/*
+	tags.array = 	[
+		{"id": 1,
+        "title": "Action pending", 
+        "children": [ {
+			"id": 2,
+			"title": "Action pending private" }
+		]},
+		
+		{"id": 3,
+		"title": "Archiv" 
+        },
+		
+		{"id": 4,
+		"title": "Completed" 
+        },
+		
+		{"id": 5,
+		"title": "Knowledge" 
+        },
+		
+		{"id": 6,
+		"title": "Work" 
+        },
+		
+		{"id": 7,
+		"title": "Deleted" 
+        }
+    ];
+	*/
 	
+	tags.flat = function(){
+				
+		flatarray = [];				
+		angular.forEach(this.array, function(value, key){
+		   flatarray[value.id] = value;
+		});
+		
+		return flatarray;
+	}
+	
+	return tags;
 	
   }]);
