@@ -1,10 +1,24 @@
 var noteAppControllers = angular.module('noteAppControllers',[]);
 
-noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService', function($scope, $http, DataService) {
+noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','storage', function($scope, $http, DataService, storage) {
 
+	DataService.loadtags();	
+    
+	$scope.data = DataService;
+	
     $scope.loadStuff = function() {
-	    DataService.loadtags();	
-	    DataService.loadnotes();
+	  DataService.notes.length=0;
+		dataloaded = storage.get('notes');
+			console.log("Loaded "+dataloaded.length);
+		    for (i=0;i<dataloaded.length;i++) {
+                DataService.notes.push(dataloaded[i]);			  
+           }
+	}
+	
+	$scope.saveStuff = function() {
+	
+	    storage.set('notes',DataService.notes);
+	    //DataService.savelocalnotes();
 	}
 	
 	$scope.addTodo = function(){
@@ -23,7 +37,7 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService', funct
 		return count;
 	};
 	*/
-	$scope.data = DataService;
+	
 	
 	$scope.archive = function() {
 		var oldTodos = $scope.todos;
@@ -103,7 +117,7 @@ noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',functio
 		console.log("Dragged "+noteid);
 		
 		DataService.getNoteById(noteid).tags.push(tag.id);
-		
+		$scope.$apply();
 	}
 	
 }]);

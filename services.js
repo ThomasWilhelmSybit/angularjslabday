@@ -34,6 +34,32 @@ noteAppServices.factory('DataService', ['$http','uuid',
          });
 	}
 	
+	data.savelocalnotes = function() {
+		
+		console.log("Saving");
+		if(typeof(Storage)!=="undefined"){
+		    localStorage.clear();
+		    localStorage.setItem("notesdata",{test: "tsst", test2: "dksjd"});
+		}else{
+		    console.log ("Local storage not available");
+		}
+	}
+	
+	data.loadlocalnotes = function() {
+		
+		if(typeof(Storage)!=="undefined"){
+		    notes.length = 0;
+		    dataloaded = localStorage.notesdata;
+			console.log("Loaded "+dataloaded.length);
+		    for (i=0;i<dataloaded.length;i++) {
+              notes.push(dataloaded[i]);			  
+           }
+		}else{
+		    console.log ("Local storage not available");
+		}
+		
+	}
+	
 	data.getNoteById = function(id){
 
 		for (i=0;i<notes.length;i++) {
