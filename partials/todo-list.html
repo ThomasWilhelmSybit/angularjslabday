@@ -22,7 +22,7 @@
 		</div>
 		<div class ='span9' ng-controller="TodoCtrl">
 			<div class='hero-unit' ng-repeat="todo in data.notes">
-				<a href='#/todos/{{todo.title}}'><h2>{{todo.title}}</h2></a>
+				<a href='#/todos/{{todo.id}}'><h2>{{todo.title}}</h2></a>
 				<p> {{todo.content}}</p>							
 				<p class='text-left'>tags: 
 					<span ng-repeat="tagid in todo.tags">{{tags[tagid].title}}</span>

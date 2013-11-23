@@ -2,11 +2,10 @@ var noteAppControllers = angular.module('noteAppControllers',[]);
 
 noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService', function($scope, $http, DataService) {
 
-    DataService.loadtags();
-	DataService.loadnotes();
-	//DataService.flatentags();
-
-   
+    $scope.loadStuff = function() {
+	    DataService.loadtags();
+	    DataService.loadnotes();
+	}
 	
 	$scope.addTodo = function(){
 		$scope.todos.push({text:$scope.todoText, name:$scope.todoName, containingFolder:askForFolderName(), done:false});
@@ -39,9 +38,13 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService', funct
 }]);
 
 
-noteAppControllers.controller('TodoDetailCtrl', ['$scope', '$routeParams',
-	function($scope, $routeParams) {
+noteAppControllers.controller('TodoDetailCtrl', ['$scope', '$routeParams','DataService',
+	function($scope, $routeParams, DataService) {
 	$scope.test = $routeParams;
+	
+	console.log("Calling controller "+ $routeParams);
+	
+	$scope.data = DataService;
 /* 
  $scope.phones = Phone.query();
     $scope.orderProp = 'age';

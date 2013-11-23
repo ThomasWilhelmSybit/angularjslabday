@@ -51,12 +51,12 @@
 				Logged in as
 				<a class="navbar-link" href="#">Username</a>
 				</p>
-				<ul class="nav">
+				<ul class="nav" ng-controller="TodoCtrl">
 					<li class="active">	
 					<a href="#">Home</a>	
 					</li>
 					<li>
-					<a href="#about">About</a>
+					<a href="#" ng-click="loadStuff()">Load Stuff</a>
 					</li>
 					<li>
 					<a href="#/todos/id">Edit</a>

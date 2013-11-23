@@ -11,7 +11,7 @@ noteApp.config(['$routeProvider',
         templateUrl: 'partials/todo-list.html',
         controller: 'TodoCtrl'
       }).
-      when('/todos/:todoId', {
+      when('/todos/:id', {
         templateUrl: 'partials/todo-detail.html',
         controller: 'TodoDetailCtrl'
       }).

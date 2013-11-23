@@ -7,13 +7,14 @@ noteAppServices.factory('DataService', ['$http',
     var tagsflat = [];  
   
     var notes = [];
+	var notesflat = [];
   
 	var data = {};
 	
 	data.tags = tags;
 	data.tagsflat = tagsflat;
 	data.notes = notes;
-	
+	data.notesflat = notesflat;
 	
 	/*
 	tags.array = 	[
@@ -73,8 +74,10 @@ noteAppServices.factory('DataService', ['$http',
            console.log("Loading notes");
 		 
 		   notes.length = 0;
+		   
 		   for (i=0;i<dataloaded.length;i++) {
               notes.push(dataloaded[i]);
+			  notesflat[dataloaded[i].id] = dataloaded[i];
            }
          });
 	}
