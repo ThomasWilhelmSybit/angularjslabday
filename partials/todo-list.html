@@ -26,7 +26,7 @@
 				<a href='#/todos/{{todo.id}}'><h2>{{todo.title}}</h2></a>
 				<p> {{todo.content}}</p>							
 				<p class='text-left'>tags: 
-					<span ng-repeat="tagid in todo.tags">{{tags[tagid].title}}</span>
+					<span ng-repeat="id in todo.tags">{{data.getTagById(id).title}}, </span>
 				</p>	
 			</div>
 		</div>
