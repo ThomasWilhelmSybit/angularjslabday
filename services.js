@@ -64,12 +64,20 @@ noteAppServices.factory('DataService', ['$http',
              tags.push(dataloaded[i]);
           }
 		  
-		  
-		  //tags.push({id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] });
-		  console.log(tags);
        });
 	}
 	
+	data.loadnotes = function() {
+		
+		 $http.get('data/notes.json').success(function(dataloaded) {
+           console.log("Loading notes");
+		 
+		   notes.length = 0;
+		   for (i=0;i<dataloaded.length;i++) {
+              notes.push(dataloaded[i]);
+           }
+         });
+	}
 	
 	return data;
 	

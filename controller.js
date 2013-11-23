@@ -3,11 +3,10 @@ var noteAppControllers = angular.module('noteAppControllers',[]);
 noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService', function($scope, $http, DataService) {
 
     DataService.loadtags();
+	DataService.loadnotes();
 	//DataService.flatentags();
 
-    $http.get('data/notes.json').success(function(data) {
-       $scope.todos = data;
-    });
+   
 	
 	$scope.addTodo = function(){
 		$scope.todos.push({text:$scope.todoText, name:$scope.todoName, containingFolder:askForFolderName(), done:false});
