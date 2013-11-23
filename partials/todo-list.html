@@ -6,7 +6,7 @@
 					<li class="nav-header">Sidebar {{filterbytagid}}</li>
 					<div>
 						<ul>
-							<li ng-repeat="roottag in tags">
+							<li ng-repeat="roottag in data.tags">
 							
 								<a href="" ng-click="filterbytag(roottag.id)">{{roottag.title}}</a>								
 								<ul>
@@ -25,7 +25,7 @@
 				<h2>{{todo.title}}</h2>
 				<p> {{todo.content}}</p>							
 				<p class='text-left'>tags: 
-					<span ng-repeat="tagid in todo.tags">{{getTagFromId(tagid).title}}</span>
+					<span ng-repeat="tagid in todo.tags">{{tags[tagid].title}}</span>
 				</p>	
 			</div>
 		</div>
