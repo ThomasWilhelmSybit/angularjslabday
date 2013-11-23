@@ -40,10 +40,11 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService', funct
 
 noteAppControllers.controller('TodoDetailCtrl', ['$scope', '$routeParams','DataService',
 	function($scope, $routeParams, DataService) {
-	$scope.test = $routeParams;
 	
 	console.log("Calling controller "+ $routeParams);
 	
+	
+	$scope.note = DataService.getNoteById($routeParams.id);
 	$scope.data = DataService;
 /* 
  $scope.phones = Phone.query();

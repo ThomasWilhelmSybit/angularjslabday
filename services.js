@@ -7,45 +7,12 @@ noteAppServices.factory('DataService', ['$http',
     var tagsflat = [];  
   
     var notes = [];
-	var notesflat = [];
-  
+	
 	var data = {};
 	
 	data.tags = tags;
 	data.tagsflat = tagsflat;
 	data.notes = notes;
-	data.notesflat = notesflat;
-	
-	/*
-	tags.array = 	[
-		{"id": 1,
-        "title": "Action pending", 
-        "children": [ {
-			"id": 2,
-			"title": "Action pending private" }
-		]},
-		
-		{"id": 3,
-		"title": "Archiv" 
-        },
-		
-		{"id": 4,
-		"title": "Completed" 
-        },
-		
-		{"id": 5,
-		"title": "Knowledge" 
-        },
-		
-		{"id": 6,
-		"title": "Work" 
-        },
-		
-		{"id": 7,
-		"title": "Deleted" 
-        }
-    ];
-	*/
 	
 	data.flatentags = function(){
 					
@@ -76,10 +43,16 @@ noteAppServices.factory('DataService', ['$http',
 		   notes.length = 0;
 		   
 		   for (i=0;i<dataloaded.length;i++) {
-              notes.push(dataloaded[i]);
-			  notesflat[dataloaded[i].id] = dataloaded[i];
+              notes.push(dataloaded[i]);			  
            }
          });
+	}
+	
+	data.getNoteById = function(id){
+		
+		for (i=0;i<notes.length;i++) {
+          if (notes[i].id == id) return notes[i];   
+        }
 	}
 	
 	return data;
