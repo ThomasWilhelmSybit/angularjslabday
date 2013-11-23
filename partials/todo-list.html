@@ -21,7 +21,8 @@
 			</div>
 		</div>
 		<div class ='span9' ng-controller="TodoCtrl">
-			<div class='hero-unit' ng-repeat="todo in data.notes">
+		    <h3>Filter for tag: {{data.filterbytagid.tags}}</h3>
+			<div class='hero-unit' ng-repeat="todo in data.notes | filter: data.filterbytagid">
 				<a href='#/todos/{{todo.id}}'><h2>{{todo.title}}</h2></a>
 				<p> {{todo.content}}</p>							
 				<p class='text-left'>tags: 

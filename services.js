@@ -13,6 +13,7 @@ noteAppServices.factory('DataService', ['$http',
 	data.tags = tags;
 	data.tagsflat = tagsflat;
 	data.notes = notes;
+	data.filterbytagid = {};
 	
 	data.flatentags = function(){
 					

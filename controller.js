@@ -11,6 +11,8 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService', funct
 		$scope.todos.push({text:$scope.todoText, name:$scope.todoName, containingFolder:askForFolderName(), done:false});
 		$scope.todoText='';
 	};
+	
+	//$scope.filterbytagid = DataService.filterbytagid;
 
 	/*
 	$scope.remaining = function() {
@@ -66,6 +68,7 @@ noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',functio
 
 	$scope.filterbytag = function(tagid){
 	    $scope.filterbytagid = tagid;
+		DataService.filterbytagid.tags = tagid;
 	};
 	
 	$scope.getTagById = function(id){
