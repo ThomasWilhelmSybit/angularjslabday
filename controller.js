@@ -53,16 +53,11 @@ noteAppControllers.controller('TodoDetailCtrl', ['$scope', '$routeParams','DataS
 	
 	if ($routeParams.id === "add"){
 		console.log('worked');
-		DataService.notes.push({id: 10, title: 'test', content: ''});
-		id = 10;
+		id = DataService.addnewnote();
+		
 	}
-	
 
 	$scope.note = DataService.getNoteById(id);
-
-	
-
-	
 
 /* 
  $scope.phones = Phone.query();
