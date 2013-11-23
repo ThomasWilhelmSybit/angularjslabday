@@ -1,6 +1,9 @@
 var noteAppControllers = angular.module('noteAppControllers',[]);
 
-noteAppControllers.controller('TodoCtrl', ['$scope','$http','TagService', function($scope, $http, TagService) {
+noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService', function($scope, $http, DataService) {
+
+    DataService.loadtags();
+	//DataService.flatentags();
 
     $http.get('data/notes.json').success(function(data) {
        $scope.todos = data;
@@ -20,13 +23,8 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','TagService', functi
 		return count;
 	};
 	*/
+	$scope.data = DataService;
 	
-	$scope.getTagFromId = function(id) {	
-	    
-		//console.log(TagService.flat());
-		return TagService.flat()[id];
-	}
-
 	$scope.archive = function() {
 		var oldTodos = $scope.todos;
 		$scope.todos = [];
@@ -52,13 +50,14 @@ noteAppControllers.controller('TodoDetailCtrl', ['$scope', '$routeParams',
   }]);
 
 
-noteAppControllers.controller('TagCtrl', function($scope, $http) {
+noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',function($scope, $http, DataService) {
 
-
+/*
     $http.get('data/tags.json').success(function(data) {
        $scope.tags = data;
     });
-	
+	*/
+	$scope.data = DataService;
 	
 	//$scope.tags = [{id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] }];
 
@@ -79,5 +78,5 @@ noteAppControllers.controller('TagCtrl', function($scope, $http) {
 		$scope.topFolders.push({name:$scope.topFolderName});
 	};
 	
-});
+}]);
 	

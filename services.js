@@ -1,13 +1,19 @@
 var noteAppServices = angular.module('noteAppServices', []);
  
-noteAppServices.factory('TagService', ['$http',
+noteAppServices.factory('DataService', ['$http',
   function($http){
   
-	var tags = {tags:[]};
+    var tags = [];  
+    var tagsflat = [];  
+  
+    var notes = [];
+  
+	var data = {};
 	
-	$http.get('data/tags.json').success(function(data) {
-       tags.array = data;
-    });
+	data.tags = tags;
+	data.tagsflat = tagsflat;
+	data.notes = notes;
+	
 	
 	/*
 	tags.array = 	[
@@ -40,16 +46,31 @@ noteAppServices.factory('TagService', ['$http',
     ];
 	*/
 	
-	tags.flat = function(){
-				
-		flatarray = [];				
-		angular.forEach(this.array, function(value, key){
-		   flatarray[value.id] = value;
+	data.flatentags = function(){
+					
+		angular.forEach(this.tags, function(value, key){
+		   this.tagsflat[value.id] = value;
 		});
-		
-		return flatarray;
+
 	}
 	
-	return tags;
+	data.loadtags = function() {
+	   
+	   $http.get('data/tags.json').success(function(dataloaded) {
+          console.log("Loading tags");
+		  //tags = dataloaded;
+		  tags.length = 0;
+		  for (i=0;i<dataloaded.length;i++) {
+             tags.push(dataloaded[i]);
+          }
+		  
+		  
+		  //tags.push({id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] });
+		  console.log(tags);
+       });
+	}
+	
+	
+	return data;
 	
   }]);
