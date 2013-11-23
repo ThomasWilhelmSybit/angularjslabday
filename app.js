@@ -9,11 +9,9 @@ noteApp.config(['$routeProvider',
     $routeProvider.
       when('/todos', {
         templateUrl: 'partials/todo-list.html',
-        controller: 'TodoCtrl'
       }).
       when('/todos/:id', {
         templateUrl: 'partials/todo-detail.html',
-        controller: 'TodoDetailCtrl'
       }).
       otherwise({
         redirectTo: '/todos'
