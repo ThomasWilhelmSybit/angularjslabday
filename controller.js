@@ -44,10 +44,26 @@ noteAppControllers.controller('TodoDetailCtrl', ['$scope', '$routeParams','DataS
 	function($scope, $routeParams, DataService) {
 	
 	console.log("Calling controller "+ $routeParams);
+
+	console.log($routeParams.id);
 	
-	
-	$scope.note = DataService.getNoteById($routeParams.id);
 	$scope.data = DataService;
+
+	var id = $routeParams.id;
+	
+	if ($routeParams.id === "add"){
+		console.log('worked');
+		DataService.notes.push({id: 10, title: 'test', content: ''});
+		id = 10;
+	}
+	
+
+	$scope.note = DataService.getNoteById(id);
+
+	
+
+	
+
 /* 
  $scope.phones = Phone.query();
     $scope.orderProp = 'age';
