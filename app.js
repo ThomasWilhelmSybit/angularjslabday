@@ -1,7 +1,8 @@
 var noteApp = angular.module('noteApp', [
   'ngRoute',
   'noteAppControllers',
-  'noteAppServices'
+  'noteAppServices',
+  'lvl.directives.dragdrop'
 ]);
 
 noteApp.config(['$routeProvider',
