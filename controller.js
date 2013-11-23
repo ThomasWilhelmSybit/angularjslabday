@@ -95,5 +95,16 @@ noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',functio
 		$scope.topFolders.push({name:$scope.topFolderName});
 	};
 	
+	$scope.dropped = function(dragEl, dropEl, tag){
+	    var dragged = angular.element(dragEl);
+		var noteid = dragged.attr('data-todo');
+		
+		console.log("Dropped "+tag.title);
+		console.log("Dragged "+noteid);
+		
+		DataService.getNoteById(noteid).tags.push(tag.id);
+		
+	}
+	
 }]);
 	
