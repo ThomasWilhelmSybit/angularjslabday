@@ -1,7 +1,7 @@
 var noteAppServices = angular.module('noteAppServices', []);
  
-noteAppServices.factory('DataService', ['$http',
-  function($http){
+noteAppServices.factory('DataService', ['$http','uuid',
+  function($http,uuid){
   
 	var tags = [];  
     var notes = [];
@@ -47,7 +47,22 @@ noteAppServices.factory('DataService', ['$http',
           if (tags[i].id == id) return tags[i];   
         }
 	}
+
+	data.addnewnote = function() {
+		var noteId = uuid.new();
 	
+		console.log(noteId);
+	
+		notes.push({id: noteId, 
+			    title: '',
+		            content: '', 
+			    creation: '', 
+			    modification: '', 
+			    tags: []}); 
+		
+		return noteId;
+	}
+
 	return data;
 	
   }]);
