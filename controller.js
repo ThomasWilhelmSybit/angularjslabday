@@ -3,7 +3,7 @@ var noteAppControllers = angular.module('noteAppControllers',[]);
 noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService', function($scope, $http, DataService) {
 
     $scope.loadStuff = function() {
-	    DataService.loadtags();
+	    DataService.loadtags();	
 	    DataService.loadnotes();
 	}
 	
