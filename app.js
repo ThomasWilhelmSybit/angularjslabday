@@ -1,7 +1,8 @@
 var noteApp = angular.module('noteApp', [
   'ngRoute',
   'noteAppControllers',
-  'noteAppServices'
+  'noteAppServices',
+  'uuidService'
 ]);
 
 noteApp.config(['$routeProvider',
