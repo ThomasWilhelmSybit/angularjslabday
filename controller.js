@@ -123,7 +123,11 @@ noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',functio
 		console.log("Dropped "+tag.title);
 		console.log("Dragged "+noteid);
 		
-		DataService.getNoteById(noteid).tags.push(tag.id);
+		note = DataService.getNoteById(noteid)
+		if (note.tags.indexOf(tag.id) == -1){
+		    note.tags.push(tag.id);
+		}
+		
 		$scope.$apply();
 	}
 	
