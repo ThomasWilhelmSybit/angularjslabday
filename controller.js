@@ -56,6 +56,10 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','stora
         todo.tags.splice(todo.tags.indexOf(tag.id),1);        
         console.log("Removing "+tag.id+" from "+todo.title);
     }
+    
+    $scope.removenote = function(note){
+        DataService.notes.splice(DataService.notes.indexOf(note),1);        
+    }
        
 }]);
 
