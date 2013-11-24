@@ -16,3 +16,18 @@
 .badge {
   margin-right: 10px;
 }
+
+.lvl-over {
+  /* applied to a drop target when a draggable object is over it */
+  border: 2px dashed black !important;
+}
+
+.lvl-target {
+				/* 
+				applied to all drop targets when a drag operation begins 
+				removed when the drag operation ends
+				used to indicate drop targets on a page 
+				*/
+				background-color: #ddd;
+				opacity: .5;
+			}

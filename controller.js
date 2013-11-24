@@ -1,3 +1,16 @@
+Array.prototype.compare = function(testArr) {
+    if (this.length != testArr.length) return false;
+    for (var i = 0; i < testArr.length; i++) {
+        if (this[i].compare) { 
+            if (!this[i].compare(testArr[i])) return false;
+        }
+        if (this[i] !== testArr[i]) return false;
+    }
+    return true;
+}
+
+
+
 var noteAppControllers = angular.module('noteAppControllers',[]);
 
 noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','storage', function($scope, $http, DataService, storage) {
@@ -13,7 +26,7 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','stora
 		    for (i=0;i<dataloaded.length;i++) {
                 DataService.notes.push(dataloaded[i]);			  
            }
-      $scope.$apply();     
+      
 	}
 	
 	$scope.saveStuff = function() {
@@ -27,18 +40,21 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','stora
 		$scope.todoText='';
 	};
 	
-	//$scope.filterbytagid = DataService.filterbytagid;
-
-	/*
-	$scope.remaining = function() {
-		var count = 0;
-		angular.forEach($scope.todos, function(todo) {
-			count += todo.done ? 0 : 1;
-		});
-		return count;
-	};
-	*/
+	$scope.filternotes = function(note){
+	    console.log("Test:"+note);
+	    DataService.filterbytagid.tags;
+	    
+	    //return DataService.filterbytagid.tags.compare(note.tags);
+	    
+	    return $scope.containsAll(DataService.filterbytagid.tags, note.tags);
+	}
 	
+	$scope.containsAll = function (needles, haystack){ 
+        for(var i = 0 , len = needles.length; i < len; i++){
+           if($.inArray(needles[i], haystack) == -1) return false;
+        }
+  		return true;
+	}
 	
 	$scope.archive = function() {
 		var oldTodos = $scope.todos;
@@ -48,16 +64,11 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','stora
 		});
 	};
 
-	var askForFolderName = function(){
-		prompt('What do you want your Folder to be named?');
-	}
-  
-     $scope.removetag = function(todo, tag){
+    $scope.removetag = function(todo, tag){
         
-        todo.tags.splice(todo.tags.indexOf(tag.id),1);
-        
+        todo.tags.splice(todo.tags.indexOf(tag.id),1);        
         console.log("Removing "+tag.id+" from "+todo.title);
-     }
+    }
        
 }]);
 
@@ -100,17 +111,12 @@ noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',functio
 	//$scope.tags = [{id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] }];
 
 	$scope.filterbytag = function(tagid){
-	    if (DataService.filterbytagid.tags == tagid){
-	       DataService.filterbytagid.tags = undefined;
+	    if (DataService.filterbytagid.tags.indexOf(tagid) != -1){
+	       DataService.filterbytagid.tags.splice(DataService.filterbytagid.tags.indexOf(tagid),1);
 	    }else{
-		   DataService.filterbytagid.tags = tagid;
+		   DataService.filterbytagid.tags.push(tagid);
 		}
 	};
-	
-	$scope.getTagById = function(id){
-	   
-	   return $scope.tags[0];
-	}
 	
 	$scope.addSubFolder = function(){
 		$scope.subFolders.push({name:$scope.subFolderName, containingFolder:$scope.topFolderName});
@@ -124,10 +130,10 @@ noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',functio
 	    var dragged = angular.element(dragEl);
 		var noteid = dragged.attr('data-todo');
 		
-		console.log("Dropped "+tag.title);
+		console.log("Dropped "+tag.id);
 		console.log("Dragged "+noteid);
 		
-		note = DataService.getNoteById(noteid)
+		note = DataService.getNoteById(noteid);
 		if (note.tags.indexOf(tag.id) == -1){
 		    note.tags.push(tag.id);
 		}

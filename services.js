@@ -9,7 +9,7 @@ noteAppServices.factory('DataService', ['$http','uuid',
 	
 	data.tags = tags;
 	data.notes = notes;
-	data.filterbytagid = {};
+	data.filterbytagid = {tags:[]};
 
 	data.loadtags = function() {
 	
@@ -72,7 +72,7 @@ noteAppServices.factory('DataService', ['$http','uuid',
 		for (i=0;i<tags.length;i++) {
           if (tags[i].id == id) return tags[i]; 
           
-          if (tags[i].children.length>0){
+          if (tags[i].children && tags[i].children.length>0){
                for (c=0;c<tags[i].children.length;c++) {
                    if (tags[i].children[c].id == id) return tags[i].children[c];
                }

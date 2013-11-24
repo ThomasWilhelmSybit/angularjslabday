@@ -8,10 +8,10 @@
 						<ul>
 							<li ng-repeat="roottag in data.tags" x-lvl-drop-target="true" x-on-drop="dropped(dragEl, dropEl, roottag)">
 							
-								<span ng-click="filterbytag(roottag.id)" ng-class="(data.filterbytagid.tags == roottag.id) ? 'selected' : ''">{{roottag.title}}</span>										
+								<span ng-click="filterbytag(roottag.id)" ng-class="(data.filterbytagid.tags.indexOf(roottag.id)!=-1) ? 'selected' : ''">{{roottag.title}}</span>										
 								<ul>
 									<li ng-repeat="tag in roottag.children" x-lvl-drop-target="true" x-on-drop="dropped(dragEl, dropEl, tag)">									
-									   <span ng-click="filterbytag(tag.id)" ng-class="(data.filterbytagid.tags == tag.id) ? 'selected' : ''">{{tag.title}}</span>	
+									   <span ng-click="filterbytag(tag.id)" ng-class="(data.filterbytagid.tags.indexOf(tag.id)!=-1) ? 'selected' : ''">{{tag.title}}</span>	
 									</li>
 								</ul>	
 							</li>
@@ -22,7 +22,7 @@
 		</div>
 		<div class ='span9' ng-controller="TodoCtrl">
 		    
-			<div class='hero-unit' ng-repeat="todo in data.notes | filter: data.filterbytagid" x-lvl-draggable="true" data-todo="{{todo.id}}">
+			<div class='hero-unit' ng-repeat="todo in data.notes | filter: filternotes" x-lvl-draggable="true" data-todo="{{todo.id}}">
 				<a href='#/todos/{{todo.id}}'><h2>{{todo.title}}</h2></a>
 				<p> {{todo.content}}</p>							
 				<p class='text-left'>

@@ -1,14 +1,16 @@
 	[
 		{"id": 1,
-        "title": "Action pending", 
-        "children": [ {
-			"id": 2,
-			"title": "Action pending private" }
-		]},
-		
+        "title": "Action pending"}, 
+        
 		{"id": 3,
-		"title": "Archiv" 
-        },
+		"title": "When",
+		"children": [ {
+			"id": 2,
+			"title": "Now" },
+			{
+			"id": 9,
+			"title": "Later" }
+		]}, 
 		
 		{"id": 4,
 		"title": "Completed" 
