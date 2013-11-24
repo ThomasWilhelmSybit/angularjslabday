@@ -1,0 +1,18 @@
+.selected {
+  background-color: grey;
+  color: white;
+}
+
+.hero-unit {
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.close {
+  line-height: 12px;
+}
+
+.label,
+.badge {
+  margin-right: 10px;
+}

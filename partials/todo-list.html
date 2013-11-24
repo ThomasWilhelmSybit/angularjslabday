@@ -3,15 +3,15 @@
 		<div class ='span3' ng-controller="TagCtrl">
 			<div class="well sidebar-nav">
 				<ul class="nav nav-list">
-					<li class="nav-header">Sidebar {{filterbytagid}}</li>
+					<li class="nav-header">Tags</li>
 					<div>
 						<ul>
 							<li ng-repeat="roottag in data.tags" x-lvl-drop-target="true" x-on-drop="dropped(dragEl, dropEl, roottag)">
 							
-								<a href="" ng-click="filterbytag(roottag.id)">{{roottag.title}}</a>								
+								<span ng-click="filterbytag(roottag.id)" ng-class="(data.filterbytagid.tags == roottag.id) ? 'selected' : ''">{{roottag.title}}</span>										
 								<ul>
-									<li ng-repeat="tag in roottag.children">									
-									   <a href="" ng-click="filterbytag(tag.id)">{{tag.title}}</a>	
+									<li ng-repeat="tag in roottag.children" x-lvl-drop-target="true" x-on-drop="dropped(dragEl, dropEl, tag)">									
+									   <span ng-click="filterbytag(tag.id)" ng-class="(data.filterbytagid.tags == tag.id) ? 'selected' : ''">{{tag.title}}</span>	
 									</li>
 								</ul>	
 							</li>
@@ -25,8 +25,8 @@
 			<div class='hero-unit' ng-repeat="todo in data.notes | filter: data.filterbytagid" x-lvl-draggable="true" data-todo="{{todo.id}}">
 				<a href='#/todos/{{todo.id}}'><h2>{{todo.title}}</h2></a>
 				<p> {{todo.content}}</p>							
-				<p class='text-left'>tags: 
-					<span ng-repeat="id in todo.tags">{{data.getTagById(id).title}}<a href="#" ng-click="removetag(todo, data.getTagById(id))">(X)</a>&nbsp;</span>
+				<p class='text-left'>
+				    <span ng-repeat="id in todo.tags" class="label">{{data.getTagById(id).title}}&nbsp;<a class="close" href="#" ng-click="removetag(todo, data.getTagById(id))">&times;</a></span>  
 				</p>	
 			</div>
 		</div>

@@ -13,6 +13,7 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','stora
 		    for (i=0;i<dataloaded.length;i++) {
                 DataService.notes.push(dataloaded[i]);			  
            }
+      $scope.$apply();     
 	}
 	
 	$scope.saveStuff = function() {
@@ -99,8 +100,11 @@ noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',functio
 	//$scope.tags = [{id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] }];
 
 	$scope.filterbytag = function(tagid){
-	    $scope.filterbytagid = tagid;
-		DataService.filterbytagid.tags = tagid;
+	    if (DataService.filterbytagid.tags == tagid){
+	       DataService.filterbytagid.tags = undefined;
+	    }else{
+		   DataService.filterbytagid.tags = tagid;
+		}
 	};
 	
 	$scope.getTagById = function(id){

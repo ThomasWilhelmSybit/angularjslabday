@@ -70,7 +70,13 @@ noteAppServices.factory('DataService', ['$http','uuid',
 	data.getTagById = function(id){
 		
 		for (i=0;i<tags.length;i++) {
-          if (tags[i].id == id) return tags[i];   
+          if (tags[i].id == id) return tags[i]; 
+          
+          if (tags[i].children.length>0){
+               for (c=0;c<tags[i].children.length;c++) {
+                   if (tags[i].children[c].id == id) return tags[i].children[c];
+               }
+          }  
         }
 	}
 
