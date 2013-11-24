@@ -26,7 +26,7 @@
 				<a href='#/todos/{{todo.id}}'><h2>{{todo.title}}</h2></a>
 				<p> {{todo.content}}</p>							
 				<p class='text-left'>tags: 
-					<span ng-repeat="id in todo.tags">{{data.getTagById(id).title}}, </span>
+					<span ng-repeat="id in todo.tags">{{data.getTagById(id).title}}<a href="#" ng-click="removetag(todo, data.getTagById(id))">(X)</a>&nbsp;</span>
 				</p>	
 			</div>
 		</div>

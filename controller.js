@@ -51,6 +51,13 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','stora
 		prompt('What do you want your Folder to be named?');
 	}
   
+     $scope.removetag = function(todo, tag){
+        
+        todo.tags.splice(todo.tags.indexOf(tag.id),1);
+        
+        console.log("Removing "+tag.id+" from "+todo.title);
+     }
+       
 }]);
 
 
