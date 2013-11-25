@@ -3,7 +3,8 @@
 		<div class='span12' ng-controller="TodoDetailCtrl">
 			<div class='hero-unit'>
 				<input class='input-xxlarge' type='text' ng-model='note.title'>
-				<textarea class='span12' rows=25 ng-model="note.content"></textarea>
+				<div text-angular ng-model="note.content"></div>
+				
 				<a href='#/todos'><input class='btn-primary' type='submit' value='Submit!'></a>
 			</div>
 		</div>

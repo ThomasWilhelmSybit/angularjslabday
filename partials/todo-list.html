@@ -24,8 +24,7 @@
 		    
 			<div class='hero-unit' ng-repeat="todo in data.notes | filter: filternotes" x-lvl-draggable="true" data-todo="{{todo.id}}">
 				<p class='text-right'><a class="close" href="#" ng-click="removenote(todo)">&times;</a></p>
-				<a href='#/todos/{{todo.id}}'><h2>{{todo.title}}</h2></a>
-				<p> {{todo.content}}</p>							
+				<a href='#/todos/{{todo.id}}'><h2>{{todo.title}}</h2></a>						
 				<p class='text-left'>
 				    <span ng-repeat="id in todo.tags" class="label">{{data.getTagById(id).title}}&nbsp;<a class="close" href="#" ng-click="removetag(todo, data.getTagById(id))">&times;</a></span>  
 				</p>	

@@ -31,3 +31,14 @@
 				background-color: #ddd;
 				opacity: .5;
 			}
+			
+.ta-editor{
+    min-height: 400px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 80%;
+    background-color:white;
+    border: solid 1px;
+    border-color: lightgray;
+}
