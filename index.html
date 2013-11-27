@@ -55,23 +55,18 @@
 			</button>
 			<a class='brand' href='#'>YourNote</a>
 			<div class="nav-collapse collapse">
-				<!--
-				<p class="navbar-text pull-right">
-				Logged in as
-				<a class="navbar-link" href="#">Username</a>
-				</p>-->
 				<ul class="nav" ng-controller="TodoCtrl">
 					<li class="active">	
-					<a href="#">Home</a>	
+						<a href="#">Home</a>	
 					</li>
 					<li>
-					<a href="#" ng-click="loadStuff()">Load Notes</a>
+						<a href="#" ng-click="loadNotesFromStorage()">Load Notes</a>
 					</li>
 					<li>
-					<a href="#" ng-click="saveStuff()">Save Notes</a>
+						<a href="#" ng-click="saveNotesToStorage()">Save Notes</a>
 					</li>
 					<li>
-					<a href="#/todos/add">Add</a>
+						<a href="#/todos/add">Add</a>
 					</li>
 				</ul>
 			</div>

@@ -4,22 +4,21 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','stora
 
 	DataService.loadtags();	
     
-	$scope.data = DataService;
+	$scope.dataService = DataService;
 	
-    $scope.loadStuff = function() {
-	  DataService.notes.length=0;
-		dataloaded = storage.get('notes');
-			console.log("Loaded "+dataloaded.length);
-		    for (i=0;i<dataloaded.length;i++) {
-                DataService.notes.push(dataloaded[i]);			  
-           }
-      
+    $scope.loadNotesFromStorage = function() {
+		DataService.notes.length=0;
+		
+		loadedNotes = storage.get('notes');
+		console.log("loadNotesFromStorage has been called. Loaded "+loadedNotes.length+" Note(s) from storage");
+		
+		for (i=0;i<loadedNotes.length;i++) {
+			DataService.notes.push(loadedNotes[i]);
+        }
 	}
 	
-	$scope.saveStuff = function() {
-	
+	$scope.saveNotesToStorage = function() {
 	    storage.set('notes',DataService.notes);
-	    //DataService.savelocalnotes();
 	}
 	
 	$scope.addTodo = function(){
@@ -28,17 +27,16 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','stora
 	};
 	
 	$scope.filternotes = function(note){
-	    console.log("Test:"+note);
-	    DataService.filterbytagid.tags;
+	    console.log("filternotes has been called: TagIds("+note.tags+")");
 	    
-	    //return DataService.filterbytagid.tags.compare(note.tags);
-	    
+		DataService.filterbytagid.tags;
 	    return $scope.containsAll(DataService.filterbytagid.tags, note.tags);
 	}
 	
 	$scope.containsAll = function (needles, haystack){ 
         for(var i = 0 , len = needles.length; i < len; i++){
-           if($.inArray(needles[i], haystack) == -1) return false;
+           if($.inArray(needles[i], haystack) == -1) 
+				return false;
         }
   		return true;
 	}
@@ -60,34 +58,21 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','stora
     $scope.removenote = function(note){
         DataService.notes.splice(DataService.notes.indexOf(note),1);        
     }
-       
 }]);
 
 
 noteAppControllers.controller('TodoDetailCtrl', ['$scope', '$routeParams','DataService',
 	function($scope, $routeParams, DataService) {
-	
-	console.log("Calling controller "+ $routeParams);
-
-	console.log($routeParams.id);
-	
-	$scope.data = DataService;
 
 	var id = $routeParams.id;
+	console.log("TodoDetailCtrl has been called with Parameter="+id);
 	
 	if ($routeParams.id === "add"){
-		console.log('worked');
 		id = DataService.addnewnote();
-		
 	}
 
 	$scope.note = DataService.getNoteById(id);
-
-/* 
- $scope.phones = Phone.query();
-    $scope.orderProp = 'age';
-	*/
-  }]);
+}]);
 
 
 noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',function($scope, $http, DataService) {
@@ -97,12 +82,14 @@ noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',functio
        $scope.tags = data;
     });
 	*/
-	$scope.data = DataService;
+	$scope.dataService = DataService;
 	
 	//$scope.tags = [{id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] }];
 
 	$scope.filterbytag = function(tagid){
-	    if (DataService.filterbytagid.tags.indexOf(tagid) != -1){
+	    console.log("filterbytag(tagId=" + tagid + ") has been called");
+		
+		if (DataService.filterbytagid.tags.indexOf(tagid) != -1){
 	       DataService.filterbytagid.tags.splice(DataService.filterbytagid.tags.indexOf(tagid),1);
 	    }else{
 		   DataService.filterbytagid.tags.push(tagid);

@@ -1,57 +1,57 @@
-
-	[
-		{"id": 1,
-		"title": "Titel 1",
-		"content": "Content 1",
-		"creation": "01.01.2013",
-		"modification": "05.01.2013",
-		"tags": [
-			1
-		]}
-		,
-		{"id": 2,"title": "Titel 2",
-		"content": "Content 2",
-		"creation": "01.01.2013",
-		"modification": "05.01.2013",
-		"tags": [
-			1,
-			2
-		]},
-		{"id": 3,"title": "Titel 3",
-		"content": "Content 3",
-		"creation": "01.01.2013",
-		"modification": "05.01.2013",
-		"tags": [
-			3
-		]},
-		{"id": 4,"title": "Titel 4",
-		"content": "Content 4",
-		"creation": "01.01.2013",
-		"modification": "05.01.2013",
-		"tags": [
-			4
-		]},
-		{"id": 5,"title": "Titel 5",
-		"content": "Content 5",
-		"creation": "01.01.2013",
-		"modification": "05.01.2013",
-		"tags": [
-			5
-		]},
-		{"id": 6,"title": "Titel 6",
-		"content": "Content 6",
-		"creation": "01.01.2013",
-		"modification": "05.01.2013",
-		"tags": [
-			6
-		]},
-		
-		{"id": 7,"title": "Titel 7",
-		"content": "Content 7",
-		"creation": "01.01.2013",
-		"modification": "05.01.2013",
-		"tags": [
-			7
-		]}
-		
-	]
+[{
+	"id": 1,
+	"title": "Titel 1",
+	"content": "Content 1",
+	"creation": "01.01.2013",
+	"modification": "05.01.2013",
+	"tags": [1]
+},
+{
+	"id": 2,
+	"title": "Titel 2",
+	"content": "Content 2",
+	"creation": "01.01.2013",
+	"modification": "05.01.2013",
+	"tags": [1,
+	2]
+},
+{
+	"id": 3,
+	"title": "Titel 3",
+	"content": "Content 3",
+	"creation": "01.01.2013",
+	"modification": "05.01.2013",
+	"tags": [3]
+},
+{
+	"id": 4,
+	"title": "Titel 4",
+	"content": "Content 4",
+	"creation": "01.01.2013",
+	"modification": "05.01.2013",
+	"tags": [4]
+},
+{
+	"id": 5,
+	"title": "Titel 5",
+	"content": "Content 5",
+	"creation": "01.01.2013",
+	"modification": "05.01.2013",
+	"tags": [5]
+},
+{
+	"id": 6,
+	"title": "Titel 6",
+	"content": "Content 6",
+	"creation": "01.01.2013",
+	"modification": "05.01.2013",
+	"tags": [6]
+},
+{
+	"id": 7,
+	"title": "Titel 7",
+	"content": "Content 7",
+	"creation": "01.01.2013",
+	"modification": "05.01.2013",
+	"tags": [7]
+}]

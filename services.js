@@ -3,38 +3,39 @@ var noteAppServices = angular.module('noteAppServices', []);
 noteAppServices.factory('DataService', ['$http','uuid',
   function($http,uuid){
   
+	var dataService = {};
 	var tags = [];  
     var notes = [];
-	var data = {};
 	
-	data.tags = tags;
-	data.notes = notes;
-	data.filterbytagid = {tags:[]};
+	dataService.tags = tags;
+	dataService.notes = notes;
+	dataService.filterbytagid = {tags:[]};
 
-	data.loadtags = function() {
+	dataService.loadtags = function() {
 	
 	   $http.get('data/tags.json').success(function(dataloaded) {
-          console.log("Loading tags");
+          console.log("Loading Tags...");
 		  //tags = dataloaded;
 		  tags.length = 0;
 		  for (i=0;i<dataloaded.length;i++) {
              tags.push(dataloaded[i]);
           }
+		  console.log("..." + dataloaded.length + " Tags loaded");
        });
 	}
 	
-	data.loadnotes = function() {
+	dataService.loadnotes = function() {
 		 $http.get('data/notes.json').success(function(dataloaded) {
-           console.log("Loading notes");
+           console.log("Loading Notes...");
 		   notes.length = 0;
-		   
 		   for (i=0;i<dataloaded.length;i++) {
               notes.push(dataloaded[i]);			  
            }
+		   console.log("..." + dataloaded.length + " Notes loaded");
          });
 	}
 	
-	data.savelocalnotes = function() {
+	dataService.savelocalnotes = function() {
 		
 		console.log("Saving");
 		if(typeof(Storage)!=="undefined"){
@@ -45,7 +46,7 @@ noteAppServices.factory('DataService', ['$http','uuid',
 		}
 	}
 	
-	data.loadlocalnotes = function() {
+	dataService.loadlocalnotes = function() {
 		
 		if(typeof(Storage)!=="undefined"){
 		    notes.length = 0;
@@ -60,14 +61,14 @@ noteAppServices.factory('DataService', ['$http','uuid',
 		
 	}
 	
-	data.getNoteById = function(id){
+	dataService.getNoteById = function(id){
 
 		for (i=0;i<notes.length;i++) {
           if (notes[i].id == id) return notes[i];   
         }
 	}
 	
-	data.getTagById = function(id){
+	dataService.getTagById = function(id){
 		
 		for (i=0;i<tags.length;i++) {
           if (tags[i].id == id) return tags[i]; 
@@ -80,21 +81,23 @@ noteAppServices.factory('DataService', ['$http','uuid',
         }
 	}
 
-	data.addnewnote = function() {
+	dataService.addnewnote = function() {
 		var noteId = uuid.new();
-	
-		console.log(noteId);
-	
-		notes.push({id: noteId, 
-			    title: '',
-		            content: '', 
+
+		notes.push(
+			{
+				id: noteId, 
+				title: '',
+		        content: '', 
 			    creation: '', 
 			    modification: '', 
-			    tags: []}); 
+			    tags: [1]
+			}
+		); 
 		
 		return noteId;
 	}
 
-	return data;
+	return dataService;
 	
   }]);

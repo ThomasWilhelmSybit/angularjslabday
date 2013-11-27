@@ -6,12 +6,12 @@
 					<li class="nav-header">Tags</li>
 					<div>
 						<ul>
-							<li ng-repeat="roottag in data.tags" x-lvl-drop-target="true" x-on-drop="dropped(dragEl, dropEl, roottag)">
+							<li ng-repeat="roottag in dataService.tags" x-lvl-drop-target="true" x-on-drop="dropped(dragEl, dropEl, roottag)">
 							
-								<span ng-click="filterbytag(roottag.id)" ng-class="(data.filterbytagid.tags.indexOf(roottag.id)!=-1) ? 'selected' : ''">{{roottag.title}}</span>										
+								<span ng-click="filterbytag(roottag.id)" ng-class="(dataService.filterbytagid.tags.indexOf(roottag.id)!=-1) ? 'selected' : ''">{{roottag.title}}</span>										
 								<ul>
 									<li ng-repeat="tag in roottag.children" x-lvl-drop-target="true" x-on-drop="dropped(dragEl, dropEl, tag)">									
-									   <span ng-click="filterbytag(tag.id)" ng-class="(data.filterbytagid.tags.indexOf(tag.id)!=-1) ? 'selected' : ''">{{tag.title}}</span>	
+									   <span ng-click="filterbytag(tag.id)" ng-class="(dataService.filterbytagid.tags.indexOf(tag.id)!=-1) ? 'selected' : ''">{{tag.title}}</span>	
 									</li>
 								</ul>	
 							</li>
@@ -22,11 +22,11 @@
 		</div>
 		<div class ='span9' ng-controller="TodoCtrl">
 		    
-			<div class='hero-unit' ng-repeat="todo in data.notes | filter: filternotes" x-lvl-draggable="true" data-todo="{{todo.id}}">
-				<p class='text-right'><a class="close" href="#" ng-click="removenote(todo)">&times;</a></p>
-				<a href='#/todos/{{todo.id}}'><h2>{{todo.title}}</h2></a>						
+			<div class='hero-unit' ng-repeat="note in dataService.notes | filter: filternotes" x-lvl-draggable="true" data-todo="{{note.id}}">
+				<p class='text-right'><a class="close" href="#" ng-click="removenote(note)">&times;</a></p>
+				<a href='#/todos/{{note.id}}'><h2>{{note.title}}</h2></a>						
 				<p class='text-left'>
-				    <span ng-repeat="id in todo.tags" class="label">{{data.getTagById(id).title}}&nbsp;<a class="close" href="#" ng-click="removetag(todo, data.getTagById(id))">&times;</a></span>  
+				    <span ng-repeat="tagId in note.tags" class="label">{{dataService.getTagById(tagId).title}}&nbsp;<a class="close" href="#" ng-click="removetag(note, dataService.getTagById(tagId))">&times;</a></span>  
 				</p>	
 			</div>
 		</div>
