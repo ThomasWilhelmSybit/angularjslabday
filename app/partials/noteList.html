@@ -1,3 +1,4 @@
+
 <div class='container-fluid'>
 	<div class='row-fluid'>
 		<div class ='span3' ng-controller="TagCtrl">
@@ -20,7 +21,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class ='span9' ng-controller="TodoCtrl">
+		<div class ='span9' ng-controller="NoteCtrl">
 		    
 			<div class='hero-unit' ng-repeat="note in dataService.notes | filter: filternotes" x-lvl-draggable="true" data-todo="{{note.id}}">
 				<p class='text-right'><a class="close" href="#" ng-click="removenote(note)">&times;</a></p>

@@ -1,6 +1,6 @@
 var noteAppControllers = angular.module('noteAppControllers',[]);
 
-noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','storage', function($scope, $http, DataService, storage) {
+noteAppControllers.controller('NoteCtrl', ['$scope','$http','DataService','storage', function($scope, $http, DataService, storage) {
 
 	DataService.loadtags();	
     
@@ -60,12 +60,12 @@ noteAppControllers.controller('TodoCtrl', ['$scope','$http','DataService','stora
     }
 }]);
 
+//-----------------------------------------------------------------------------------------------------------------------------------
 
-noteAppControllers.controller('TodoDetailCtrl', ['$scope', '$routeParams','DataService',
-	function($scope, $routeParams, DataService) {
+noteAppControllers.controller('NoteDetailCtrl', ['$scope', '$routeParams','DataService', function($scope, $routeParams, DataService) {
 
 	var id = $routeParams.id;
-	console.log("TodoDetailCtrl has been called with Parameter="+id);
+	console.log("NoteDetailCtrl has been called with Parameter="+id);
 	
 	if ($routeParams.id === "add"){
 		id = DataService.addnewnote();
@@ -74,17 +74,11 @@ noteAppControllers.controller('TodoDetailCtrl', ['$scope', '$routeParams','DataS
 	$scope.note = DataService.getNoteById(id);
 }]);
 
+//-----------------------------------------------------------------------------------------------------------------------------------
 
 noteAppControllers.controller('TagCtrl', ['$scope','$http','DataService',function($scope, $http, DataService) {
 
-/*
-    $http.get('data/tags.json').success(function(data) {
-       $scope.tags = data;
-    });
-	*/
 	$scope.dataService = DataService;
-	
-	//$scope.tags = [{id: 1, title:"Roottag", children: [{id: 2, title:"childtag1"},{id: 3, title:"childtag2"}] }];
 
 	$scope.filterbytag = function(tagid){
 	    console.log("filterbytag(tagId=" + tagid + ") has been called");

@@ -1,9 +1,9 @@
 
 
 var noteApp = angular.module('noteApp', [
-  'ngRoute',
   'noteAppControllers',
   'noteAppServices',
+  'ngRoute',
   'lvl.directives.dragdrop',
   'lvl.services',
   'angularLocalStorage',
@@ -14,10 +14,10 @@ noteApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/todos', {
-        templateUrl: 'partials/todo-list.html',
+        templateUrl: 'partials/noteList.html',
       }).
       when('/todos/:id', {
-        templateUrl: 'partials/todo-detail.html',
+        templateUrl: 'partials/noteDetail.html',
       }).
       otherwise({
         redirectTo: '/todos'

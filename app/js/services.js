@@ -1,7 +1,6 @@
 var noteAppServices = angular.module('noteAppServices', []);
  
-noteAppServices.factory('DataService', ['$http','uuid',
-  function($http,uuid){
+noteAppServices.factory('DataService', ['$http','uuid',function($http,uuid){
   
 	var dataService = {};
 	var tags = [];  
@@ -12,7 +11,6 @@ noteAppServices.factory('DataService', ['$http','uuid',
 	dataService.filterbytagid = {tags:[]};
 
 	dataService.loadtags = function() {
-	
 	   $http.get('data/tags.json').success(function(dataloaded) {
           console.log("Loading Tags...");
 		  //tags = dataloaded;
@@ -36,7 +34,6 @@ noteAppServices.factory('DataService', ['$http','uuid',
 	}
 	
 	dataService.savelocalnotes = function() {
-		
 		console.log("Saving");
 		if(typeof(Storage)!=="undefined"){
 		    localStorage.clear();
@@ -47,7 +44,6 @@ noteAppServices.factory('DataService', ['$http','uuid',
 	}
 	
 	dataService.loadlocalnotes = function() {
-		
 		if(typeof(Storage)!=="undefined"){
 		    notes.length = 0;
 		    dataloaded = localStorage.notesdata;
@@ -58,18 +54,15 @@ noteAppServices.factory('DataService', ['$http','uuid',
 		}else{
 		    console.log ("Local storage not available");
 		}
-		
 	}
 	
-	dataService.getNoteById = function(id){
-
+	dataService.getNoteById = function(id) {
 		for (i=0;i<notes.length;i++) {
           if (notes[i].id == id) return notes[i];   
         }
 	}
 	
-	dataService.getTagById = function(id){
-		
+	dataService.getTagById = function(id) {
 		for (i=0;i<tags.length;i++) {
           if (tags[i].id == id) return tags[i]; 
           
