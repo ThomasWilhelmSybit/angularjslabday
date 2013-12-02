@@ -1,5 +1,6 @@
 
 <div class='container-fluid'>
+    <!-- Show tree of tags -->
 	<div class='row-fluid'>
 		<div class ='span3' ng-controller="TagCtrl">
 			<div class="well sidebar-nav">
@@ -21,6 +22,7 @@
 				</ul>
 			</div>
 		</div>
+		<!-- Show filtered list of notes -->
 		<div class ='span9' ng-controller="NoteCtrl">
 		    
 			<div class='hero-unit' ng-repeat="note in dataService.notes | filter: filternotes" x-lvl-draggable="true" data-todo="{{note.id}}">
@@ -32,6 +34,5 @@
 			</div>
 		</div>
 		<hr>
-		
 	</div>
 </div>	
